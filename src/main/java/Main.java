@@ -19,6 +19,7 @@ public class Main extends Application {
     private Scene scene;
     private Image userImage = new Image(this.getClass().getResourceAsStream("/images/peterParker.png"));
     private Image dukeImage = new Image(this.getClass().getResourceAsStream("/images/uncleBen.png"));
+    private Duke duke = new Duke();
 
     @Override
     public void start(Stage stage) {
@@ -90,8 +91,13 @@ public class Main extends Application {
      * the dialog container. Clears the user input after processing.
      */
     private void handleUserInput() {
-        dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), userImage));
-        userInput.clear();
+        String userText = userInput.getText();
+        String dukeText = duke.getResponse(userInput.getText());
+        dialogContainer.getChildren().addAll(
+                new DialogBox(userText, userImage),
+                new DialogBox(dukeText, dukeImage)
+        );
+        userInput.clear();;
     }
 
 }
